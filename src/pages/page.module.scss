@@ -1,0 +1,23 @@
+.homePageContainer {
+    max-width: 640px;
+    margin-inline: auto;
+
+    .title {
+        color: #1677ff;
+    }
+
+  .tripAndPassengerInput {
+    background-color: white;
+    padding: 3px 24px;
+    border-radius: 10px;
+  }
+
+  .formItem {
+    width: 100%;
+    flex: 1;
+  }
+
+  .formItem :global(.ant-form-item-control) {
+    max-width: none;
+  }
+}
