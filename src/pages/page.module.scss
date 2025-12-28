@@ -10,14 +10,34 @@
     background-color: white;
     padding: 3px 24px;
     border-radius: 10px;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      padding: 12px 24px;
+    }
+
+    .formItem {
+      margin: 0;
+    }
   }
 
   .formItem {
     width: 100%;
     flex: 1;
+
+    @media screen and (max-width: 600px) {
+      margin: 0;
+    }
   }
 
   .formItem :global(.ant-form-item-control) {
     max-width: none;
+  }
+
+  .departureAndArrivalContainer {
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      gap: 8px !important;
+    }
   }
 }

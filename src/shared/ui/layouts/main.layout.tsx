@@ -3,6 +3,7 @@ import {Content, Footer, Header} from "antd/es/layout/layout";
 import type {ItemType, MenuItemType} from "antd/es/menu/interface";
 import {Outlet} from "react-router";
 import railwayLogo from "../../../assets/images/railway-logo.svg";
+import classes from './layout.module.scss'
 
 const items: ItemType<MenuItemType>[] = [
     {
@@ -48,7 +49,7 @@ function MainLayout() {
                     style={{ minWidth: 0 }}
                 />
             </Header>
-            <Content style={{ padding: '0 48px' }}>
+            <Content className={classes.content}>
                 <div
                     style={{
                         padding: 24,
