@@ -41,3 +41,17 @@
     }
   }
 }
+
+.searchResultsContainer {
+  max-width: 640px;
+  margin-inline: auto;
+
+  .title {
+    color: #08979c;
+    margin-bottom: 32px;
+  }
+
+  .descriptions {
+    margin-bottom: 100px;
+  }
+}

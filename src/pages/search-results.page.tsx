@@ -1,8 +1,27 @@
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {useSearchParams} from "react-router";
-import {Descriptions, type DescriptionsProps} from "antd";
+import {Badge, Descriptions, type DescriptionsProps, Flex, Typography} from "antd";
 import {getStationNameByCode, getTripVariantName} from "../shared/utils.ts";
 import dayjs from "dayjs";
+import classes from './page.module.scss'
+import TrainCard from "../modules/trains/ui/train-card.tsx";
+import trainMockData from "../shared/constants/train-mock.data.ts";
+
+const { Title } = Typography
+
+const styles: DescriptionsProps['styles'] = {
+    content: {
+        color: '#1677ff',
+        fontWeight: '500',
+    },
+    label: {
+        color: '#000',
+    },
+    title: {
+        fontSize: '2rem',
+        color: '#1677ff',
+    }
+};
 
 function SearchResultsPage() {
     const [departureDate, setDepartureDate] = useState<string | null>(null);
@@ -44,13 +63,52 @@ function SearchResultsPage() {
         formatDate()
     }, [date, formatDate]);
 
+    const filteredTrainMockData = useMemo(() => {
+        let filtered = trainMockData.filter(t => (
+            t.from.code === departure
+            &&
+            t.to.code === arrival
+        ));
+
+        // Фильтрация по дате отправления
+        if (date && date.length >= 1) {
+            const searchDepartureDate = dayjs(date[0]);
+
+
+            filtered = filtered.filter(t => {
+                // Парсим дату из формата "29 Dec"
+                const trainDate = dayjs(t.from.date, 'DD MMM');
+
+                // Сравниваем только день (date()) и месяц (month())
+                return trainDate.date() === searchDepartureDate.date() &&
+                    trainDate.month() === searchDepartureDate.month();
+            });
+        }
+
+        // Для round trip - дополнительная фильтрация по дате возврата
+        if (date && date.length === 2 && tripVariant === 'roundTrip') {
+            const searchReturnDate = dayjs(date[1]);
+
+            filtered = filtered.filter(t => {
+                // Парсим дату прибытия
+                const trainArrivalDate = dayjs(t.to.date, 'DD MMM');
+
+                // Проверяем, что поезд прибывает не позже указанной даты возврата
+                return trainArrivalDate.isBefore(searchReturnDate) ||
+                    trainArrivalDate.isSame(searchReturnDate, 'day');
+            });
+        }
+
+        return filtered;
+    }, [arrival, departure, date, tripVariant]);
+
     const items: DescriptionsProps['items'] = useMemo(() => (
         [
             {
                 key: '1',
                 span: 2,
                 label: 'Trip Variant',
-                children: tripVariant ? getTripVariantName(tripVariant) : 'No data',
+                children: <Badge style={{ color: '#1677ff', }} status="processing" text={tripVariant ? getTripVariantName(tripVariant) : 'No data'} /> ,
             },
             {
                 key: '2',
@@ -88,8 +146,28 @@ function SearchResultsPage() {
     ), [tripVariant, departure, arrival, arrivalDate, departureDate, passengers]);
 
     return (
-        <div>
-            <Descriptions title="Search results" layout="vertical" items={items} column={4} />
+        <div className={classes.searchResultsContainer}>
+            <Descriptions className={classes.descriptions} styles={styles} title="Search results" layout="vertical" items={items} column={4} />
+            <Title className={classes.title}>Available Trains</Title>
+            <Flex className={classes.trainsCardsContainer} vertical gap={24}>
+                {filteredTrainMockData.map((t) => (
+                    <TrainCard
+                        title={`${t.trainNumber} - ${t.trainName}`}
+                        departure={{
+                            date: t.from.date,
+                            time: t.from.time,
+                            station: t.from.station
+                        }}
+                        arrival={{
+                            date: t.to.date,
+                            time: t.to.time,
+                            station: t.to.station
+                        }}
+                        duration={t.duration}
+                        ticketClasses={t.classes}
+                    />
+                ))}
+            </Flex>
         </div>
     );
 }

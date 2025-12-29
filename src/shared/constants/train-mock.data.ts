@@ -11,7 +11,7 @@ export type AvailabilityStatus =
 
 export type FareType = "General" | "Tatkal";
 
-export type ClassCode = "SL" | "3A" | "2A" | "1A" | "CC" | "EC";
+export type ClassCode = "3A" | "2A" | "1A";
 
 export interface TrainClass {
     classCode: ClassCode;
@@ -151,8 +151,8 @@ const trainsMockData: Train[] = [
         duration: "33h 30m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 125
@@ -201,8 +201,8 @@ const trainsMockData: Train[] = [
         duration: "3h 15m",
         classes: [
             {
-                classCode: "CC",
-                className: "Chair Car",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 95
@@ -211,8 +211,8 @@ const trainsMockData: Train[] = [
                 price: 520
             },
             {
-                classCode: "EC",
-                className: "Executive Chair",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 18
@@ -241,8 +241,8 @@ const trainsMockData: Train[] = [
         duration: "34h 50m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "waitlist",
                     position: 89
@@ -431,8 +431,8 @@ const trainsMockData: Train[] = [
         duration: "31h 45m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 156
@@ -481,8 +481,8 @@ const trainsMockData: Train[] = [
         duration: "33h 35m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "waitlist",
                     position: 112
@@ -531,8 +531,8 @@ const trainsMockData: Train[] = [
         duration: "32h 45m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 203
@@ -591,8 +591,8 @@ const trainsMockData: Train[] = [
         duration: "34h 30m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 178
@@ -641,8 +641,8 @@ const trainsMockData: Train[] = [
         duration: "39h 45m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 134
@@ -691,8 +691,8 @@ const trainsMockData: Train[] = [
         duration: "22h 40m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "waitlist",
                     position: 67
@@ -791,8 +791,8 @@ const trainsMockData: Train[] = [
         duration: "6h 45m",
         classes: [
             {
-                classCode: "CC",
-                className: "Chair Car",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 142
@@ -801,8 +801,8 @@ const trainsMockData: Train[] = [
                 price: 635
             },
             {
-                classCode: "EC",
-                className: "Executive Chair",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 26
@@ -831,8 +831,8 @@ const trainsMockData: Train[] = [
         duration: "44h 45m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 189
@@ -931,8 +931,8 @@ const trainsMockData: Train[] = [
         duration: "32h 15m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "available",
                     count: 98
@@ -981,8 +981,8 @@ const trainsMockData: Train[] = [
         duration: "28h 35m",
         classes: [
             {
-                classCode: "SL",
-                className: "Sleeper",
+                classCode: "3A",
+                className: "Third AC",
                 availability: {
                     type: "waitlist",
                     position: 145
