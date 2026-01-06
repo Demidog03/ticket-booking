@@ -16,6 +16,7 @@ interface TrainCardProps {
     }
     duration: string;
     ticketClasses: TrainClass[]
+    onClickCard: (trainClass: TrainClass) => void;
 }
 
 function classCodeToClassName(classCode: string) {
@@ -26,9 +27,9 @@ function classCodeToClassName(classCode: string) {
     }
 }
 
-function TrainCard({ title = 'No data', duration, departure, arrival, ticketClasses }: TrainCardProps) {
+function TrainCard({ title = 'No data', duration, departure, arrival, ticketClasses, onClickCard }: TrainCardProps) {
     return (
-        <Card className={classes.trainCard} title={title} extra={<a href="#">More</a>}>
+        <Card className={classes.trainCard} title={title}>
             <p>Runs on</p>
             <Button style={{ cursor: 'text' }} color="cyan" variant="outlined">
                 Everyday
@@ -48,7 +49,10 @@ function TrainCard({ title = 'No data', duration, departure, arrival, ticketClas
             </div>
             <div className={classes.ticketClassesContainer}>
                 {ticketClasses.map(ticketClass => (
-                    <div className={classes['ticketClass'] + ' ' + classes[classCodeToClassName(ticketClass.classCode) || '']}>
+                    <div
+                        onClick={() => onClickCard(ticketClass)}
+                        className={classes['ticketClass'] + ' ' + classes[classCodeToClassName(ticketClass.classCode) || '']}
+                    >
                         <div>
                             <p>{ticketClass.classCode}</p>
                             <p>{ticketClass.fareType}</p>

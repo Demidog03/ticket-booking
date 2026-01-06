@@ -1,10 +1,13 @@
 import './App.scss'
 import {RouterProvider} from "react-router";
 import router from "./router.tsx";
+import {BookingProvider} from "./modules/booking/context/booking-context.tsx";
 
 function App() {
     return (
-        <RouterProvider router={router} />
+        <BookingProvider>
+            <RouterProvider router={router} />
+        </BookingProvider>
   )
 }
 

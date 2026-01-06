@@ -2,6 +2,7 @@ import {createBrowserRouter} from "react-router";
 import MainLayout from "./shared/ui/layouts/main.layout.tsx";
 import HomePage from "./pages/home.page.tsx";
 import SearchResultsPage from "./pages/search-results.page.tsx";
+import ReviewBookingPage from "./pages/review-booking.page.tsx";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
             {
                 path: 'search-results',
                 element: <SearchResultsPage/>
+            },
+            {
+                path: 'review-booking',
+                element: <ReviewBookingPage/>
             }
         ]
     },

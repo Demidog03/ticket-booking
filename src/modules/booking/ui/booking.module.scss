@@ -1,0 +1,61 @@
+.trainCard {
+  background-color: #d6e4ff;
+
+  h2, h3, h4, p {
+    margin: 0;
+  }
+
+  h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+    color: #1d39c4;
+  }
+
+  .nameAndClass {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .mainInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+  }
+
+  .hours {
+    justify-self: center;
+    font-weight: 500;
+    color: #8c8c8c;
+  }
+
+  .arrival {
+    justify-self: right;
+    text-align: right;
+  }
+
+  .date {
+    font-weight: 500;
+  }
+}
+
+.passengerFormCard {
+  .formContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    & :global(.ant-picker) {
+      width: 100%;
+    }
+  }
+}
