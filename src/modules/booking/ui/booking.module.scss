@@ -59,3 +59,25 @@
     }
   }
 }
+
+.foodCard {
+  text-align: center;
+
+  img {
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .foodCardBody {
+    height: 190px;
+  }
+
+  .foodCardActions {
+    padding: 0 8px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,5 +1,11 @@
 import {createContext, type Dispatch, type JSX, type SetStateAction, useEffect, useState} from "react";
 import type {Train} from "../../../shared/constants/train-mock.data.ts";
+import type {BookingPassengerFormData} from "../ui/booking-passenger-card.tsx";
+import {type BookingFood, bookingFoods} from "../data/booking-mock-data.ts";
+
+export interface BookingFoodData extends BookingFood {
+    isAdded: boolean;
+}
 
 export interface BookingInfo {
     tripVariant: string | undefined;
@@ -9,6 +15,8 @@ export interface BookingInfo {
     passengers: number | undefined;
     selectedTrain?: Train | undefined;
     selectedClassCode?: string | undefined;
+    passengersData?: BookingPassengerFormData[]
+    foodData?: BookingFoodData[]
 }
 
 const initialValue = {
@@ -18,7 +26,9 @@ const initialValue = {
     date: undefined,
     passengers: undefined,
     selectedTrain: undefined,
-    selectedClassCode: undefined
+    selectedClassCode: undefined,
+    passengersData: undefined,
+    foodData: bookingFoods.map(food => ({...food, isAdded: false}))
 }
 
 export interface BookingContextInterface {
@@ -33,7 +43,10 @@ const BookingContext = createContext<BookingContextInterface>({
 
 export const BookingProvider = ({ children }: { children: JSX.Element }) => {
     const localstorageBookingInfo = JSON.parse(localStorage.getItem('bookingInfo') ?? '{}') as BookingInfo;
-    const [bookingInfo, setBookingInfo] = useState<BookingInfo>(localstorageBookingInfo);
+    const [bookingInfo, setBookingInfo] = useState<BookingInfo>({
+        ...initialValue,
+        ...localstorageBookingInfo,
+    });
 
     useEffect(() => {
         localStorage.setItem('bookingInfo', JSON.stringify(bookingInfo))
