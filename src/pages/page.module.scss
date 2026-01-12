@@ -69,5 +69,46 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
     gap: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+.offersCard {
+  border: 2px dashed #f759ab;
+  margin-bottom: 24px;
+
+  h2 {
+    color: #f759ab;
+    margin-bottom: 24px;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .offer1 {
+    margin-bottom: 24px;
+  }
+
+  .icon {
+    path {
+      fill: #f759ab;
+    }
+  }
+}
+
+.promocodeCard, .extraBaggageCard {
+  width: 100%;
+}
+
+.billDetailsCard {
+  .totalCharge {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .discount {
+    font-weight: 600;
   }
 }

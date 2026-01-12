@@ -26,7 +26,7 @@ const styles: DescriptionsProps['styles'] = {
 
 function SearchResultsPage() {
     const navigate = useNavigate();
-    const { setBookingInfo } = useContext(BookingContext)
+    const { bookingInfo, setBookingInfo } = useContext(BookingContext)
     const [departureDate, setDepartureDate] = useState<string | null>(null);
     const [arrivalDate, setArrivalDate] = useState<string | null>(null);
 
@@ -150,6 +150,7 @@ function SearchResultsPage() {
 
     function goToReviewBookingPage(trainClass: TrainClass, train: Train) {
         setBookingInfo({
+            ...bookingInfo,
             date: date,
             arrival: arrival || undefined,
             departure: departure || undefined,
